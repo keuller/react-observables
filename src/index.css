@@ -1,8 +1,9 @@
-body { font-family: Roboto, Arial, Helvetica; font-size: 12px; }
-.header { border-left: 7px solid #ccc; border-bottom: 1px solid #ccc; padding: 10px;}
+body { font-family: Roboto, Arial, Helvetica; font-size: 12px; margin:0; padding:10px; }
+.header { border: 1px solid #ccc; border-left: 10px solid #673ab8; padding: 15px; background-color: #eee; margin: 0;}
 .section { padding-bottom: 15px; }
 .counter { font-size:15px; }
-button { margin-right: 7px; min-width:30px; }
-.btn-last { margin-left: 7px; }
+button { margin-right: 7px; min-width:34px; }
 ul { list-style-type: none }
 li { float: left; padding-right:10px; padding-bottom:15px; }
+.btn { font-size: 14px; }
+.last { margin-left: 7px; }

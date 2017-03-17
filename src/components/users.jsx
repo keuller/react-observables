@@ -27,9 +27,9 @@ const UserList = ({data}) => {
         <div class="section">
             <h2>Github Users</h2>
             <div>
-                <button onClick={() => loadUsers()}>Load</button>
-                <button onClick={() => action('USERS_LOADING')} disabled={data.length < 1}>Clear</button>
-                <select onChange={(ev) => loadUsers(ev.target.value)}>
+                <button class="btn" onClick={() => loadUsers()}>Load</button>
+                <button class="btn" onClick={() => action('USERS_LOADING')} disabled={data.length < 1}>Clear</button>
+                <select class="btn" onChange={(ev) => loadUsers(ev.target.value)}>
                     <option value="5">Max. 05</option>
                     <option value="10">Max. 10</option>
                     <option value="15">Max. 15</option>

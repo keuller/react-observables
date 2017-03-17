@@ -6,9 +6,9 @@ const Counter = (props) => {
         <div class="section">
             <h2>Counter</h2>
             <div>
-                <button onClick={() => action('INCREMENT')}>+</button>
+                <button class="btn" onClick={() => action('INCREMENT')}>+</button>
                 <span class="counter">{props.count}</span>
-                <button class="btn-last" onClick={() => action('DECREMENT')}>-</button>
+                <button class="btn last" onClick={() => action('DECREMENT')}>-</button>
             </div>
         </div>
     )

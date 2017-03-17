@@ -6,9 +6,9 @@ const Artist = (props) => {
         <div class="section">
             <h2>Name: {props.name}</h2>
             <div>
-                <button onClick={() => action('NAME_CHANGED', 'Harry Potter')}>Harry</button>
-                <button onClick={() => action('NAME_CHANGED', 'Hermione Granger')}>Hermione</button>
-                <button onClick={() => action('NAME_CHANGED', 'Rony Weasley')}>Rony</button>
+                <button class="btn" onClick={() => action('NAME_CHANGED', 'Harry Potter')}>Harry</button>
+                <button class="btn" onClick={() => action('NAME_CHANGED', 'Hermione Granger')}>Hermione</button>
+                <button class="btn" onClick={() => action('NAME_CHANGED', 'Rony Weasley')}>Rony</button>
             </div>
         </div>
     )

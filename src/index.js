@@ -9,7 +9,7 @@ import UserList from 'components/users'
 const App = (props) => {
     return (
         <main>
-            <h1 class="header">State Management with Preact and Most</h1>
+            <h1 class="header">Preact and Most</h1>
             <Counter count={props.count} />
             <Artist name={props.name || ''} />
             <UserList data={props.users || []} />
