@@ -9,7 +9,8 @@ var cssLoader = ExtractTextPlugin.extract({
 module.exports = {
   entry:{
     bundle: './src/index.js',
-    vendor: ['preact', 'most', 'most-subject', 'whatwg-fetch']
+    runtime: ['preact', 'whatwg-fetch'],
+    vendor: ['rxjs']
   },
 
   output: {
@@ -56,7 +57,7 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new ExtractTextPlugin("css/app.css"),
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor'],
+      name: ['vendor', 'runtime'],
       warnings: false
     })
   ]
