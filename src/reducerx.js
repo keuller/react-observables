@@ -1,7 +1,6 @@
-import Rx from 'rxjs'
-import { isStream, ensureStream } from './util'
+import { createStream, isStream, ensureStream } from './util'
 
-const stream$ = new Rx.Subject()
+const stream$ = createStream()
 
 // dispatcher
 const dispatcher = (...args) => stream$.next(...args)

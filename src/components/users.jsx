@@ -1,12 +1,12 @@
 import { h } from 'preact'
-import { from, fromPromise } from '../util'
+import { promise } from '../util'
 import { action, asyncAction } from 'reducerx'
 
 let loadUsers = (val) => {
     if (!val) val = '5'
     asyncAction('USERS_LOADING', 
-        fromPromise(fetch(`https://api.github.com/users?per_page=${val}`))
-            .flatMap(result => fromPromise(result.json()))
+        promise(fetch(`https://api.github.com/users?per_page=${val}`))
+            .flatMap(result => promise(result.json()))
             .map(val => ({ type: 'USERS_LOADED', payload: val }))
     )
 }
