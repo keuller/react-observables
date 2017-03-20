@@ -1,12 +1,8 @@
-import { Subject, from } from './util'
-import Kefir from 'kefir'
-
-const isStream = (obs) => (obs != undefined && obs._dispatcher !== undefined)
-
-const ensureStream = (action) => isStream(action) ? action : from(action)
+import { Subject, from, createStream, ensureStream, isStream } from './util'
 
 const source = new Subject()
-const stream$ = Kefir.stream(emitter => source.setSource(emitter))
+
+const stream$ = createStream(source)
 
 // dispatcher
 const dispatcher = (...args) => source.next(...args)
