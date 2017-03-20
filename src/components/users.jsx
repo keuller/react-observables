@@ -1,13 +1,11 @@
 import { h } from 'preact'
-import { from, fromPromise } from 'most'
 import { action } from 'reducerx'
+import { from, fromPromise } from '../util'
 
 let loadUsers = (val) => {
     if (!val) val = '5'
     action('USERS_LOADING', 
-        fromPromise(fetch(`https://api.github.com/users?per_page=${val}`))
-            .recoverWith(err => from([]))
-            .chain(result => fromPromise(result.json()))
+        fromPromise(fetch(`https://api.github.com/users?per_page=${val}`).then(resp => resp.json()))
             .map(val => ({ type: 'USERS_LOADED', payload: val }))
     )
 }

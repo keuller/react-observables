@@ -1,17 +1,19 @@
-import { from } from 'most'
-import { sync } from 'most-subject'
+import { Subject, from } from './util'
+import Kefir from 'kefir'
 
-const isStream = (obs) => (obs != undefined && obs.source !== undefined)
+const isStream = (obs) => (obs != undefined && obs._dispatcher !== undefined)
 
-const ensureStream = (action) => isStream(action) ? action : from([action]);
+const ensureStream = (action) => isStream(action) ? action : from(action)
 
-const stream$ = sync()
+const source = new Subject()
+const stream$ = Kefir.stream(emitter => source.setSource(emitter))
 
 // dispatcher
-const dispatcher = (...args) => stream$.next(...args)
+const dispatcher = (...args) => source.next(...args)
 
-// Reduxification
-export const createStore = (rootReducer, initState) => stream$.chain(ensureStream).scan(rootReducer, initState)
+export const createStore = (rootReducer, initState) => {
+    return stream$.flatMap(ensureStream).scan(rootReducer, initState)
+}
 
 // dispatch action
 export const action = (type, data) => {

@@ -10,7 +10,7 @@ module.exports = {
   entry:{
     bundle: './src/index.js',
     runtime: ['preact', 'whatwg-fetch'],
-    vendor: ['most', 'most-subject']
+    vendor: ['kefir']
   },
 
   output: {
