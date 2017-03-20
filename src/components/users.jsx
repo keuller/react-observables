@@ -1,10 +1,10 @@
 import { h } from 'preact'
 import { from, fromPromise } from 'most'
-import { action, asyncAction } from 'reducerx'
+import { action } from 'reducerx'
 
 let loadUsers = (val) => {
     if (!val) val = '5'
-    asyncAction('USERS_LOADING', 
+    action('USERS_LOADING', 
         fromPromise(fetch(`https://api.github.com/users?per_page=${val}`))
             .recoverWith(err => from([]))
             .chain(result => fromPromise(result.json()))

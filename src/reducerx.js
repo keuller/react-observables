@@ -1,9 +1,9 @@
 import { from } from 'most'
 import { sync } from 'most-subject'
 
-const isObservable = (obs) => (obs.source !== undefined)
+const isStream = (obs) => (obs != undefined && obs.source !== undefined)
 
-const ensureObservable = (action) => isObservable(action) ? action : from([action]);
+const ensureStream = (action) => isStream(action) ? action : from([action]);
 
 const stream$ = sync()
 
@@ -11,16 +11,13 @@ const stream$ = sync()
 const dispatcher = (...args) => stream$.next(...args)
 
 // Reduxification
-export const createStore = (rootReducer, initState) => stream$.chain(ensureObservable).scan(rootReducer, initState)
+export const createStore = (rootReducer, initState) => stream$.chain(ensureStream).scan(rootReducer, initState)
 
 // dispatch action
-export const action = (type, data) => dispatcher({ type, payload: data })
-
-// dispatch async action
-export const asyncAction = (type, source$) => {
-    stream$.next({ type, payload: source$ })
-    if (isObservable(source$)) {
-        stream$.next(source$)
+export const action = (type, data) => {
+    dispatcher({ type, payload: data })
+    if (isStream(data)) {
+        dispatcher(data)
     }
 }
 
