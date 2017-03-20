@@ -10,7 +10,10 @@ module.exports = {
   entry:{
     bundle: './src/index.js',
     runtime: ['preact', 'whatwg-fetch'],
-    vendor: ['rxjs']
+    vendor: [
+      'rxjs/Subject', 'rxjs/Observable', 'rxjs/add/observable/from', 'rxjs/add/observable/fromPromise',
+      'rxjs/add/operator/mergeMap', 'rxjs/add/operator/map', 'rxjs/add/operator/startWith', 'rxjs/add/operator/scan'
+    ]
   },
 
   output: {
