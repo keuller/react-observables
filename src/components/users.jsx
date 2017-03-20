@@ -5,8 +5,7 @@ import { action } from 'reducerx'
 let loadUsers = (val) => {
     if (!val) val = '5'
     action('USERS_LOADING', 
-        promise(fetch(`https://api.github.com/users?per_page=${val}`))
-            .flatMap(result => promise(result.json()))
+        promise(fetch(`https://api.github.com/users?per_page=${val}`).then(resp => resp.json()))
             .map(val => ({ type: 'USERS_LOADED', payload: val }))
     )
 }
