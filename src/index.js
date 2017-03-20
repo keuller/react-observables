@@ -18,7 +18,7 @@ const App = (props) => {
 }
 
 document.addEventListener('DOMContentLoaded', (ev) => {
-    let root = null;
+    let root = null
     store.subscribe(state => {
         root = render(<App {...state} />, document.querySelector('#app'), root) 
     })

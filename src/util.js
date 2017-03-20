@@ -5,7 +5,7 @@ import 'rxjs/add/observable/fromPromise'
 
 export const createStream = () => { return new Subject() }
 
-export const isStream = (obs) => (obs._isScalar !== undefined)
+export const isStream = (obs) => (obs != undefined && obs._isScalar !== undefined)
 
 export const ensureStream = (action) => isStream(action) ? action : Observable.from([action]);
 

@@ -9,13 +9,10 @@ const dispatcher = (...args) => stream$.next(...args)
 export const createStore = (rootReducer, initState) => stream$.flatMap(ensureStream).startWith(initState).scan(rootReducer)
 
 // dispatch action
-export const action = (type, data) => dispatcher({ type, payload: data })
-
-// dispatch async action
-export const asyncAction = (type, source$) => {
-    stream$.next({ type, payload: source$ })
-    if (isStream(source$)) {
-        stream$.next(source$)
+export const action = (type, data) => {
+    dispatcher({ type, payload: data })
+    if (isStream(data)) {
+        dispatcher(data)
     }
 }
 
