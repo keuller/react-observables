@@ -9,7 +9,7 @@ var cssLoader = ExtractTextPlugin.extract({
 module.exports = {
   entry:{
     bundle: './src/index.js',
-    runtime: ['preact', 'whatwg-fetch'],
+    runtime: ['preact'],
     vendor: [
       'rxjs/Subject', 'rxjs/Observable', 'rxjs/add/observable/from', 'rxjs/add/observable/fromPromise',
       'rxjs/add/operator/mergeMap', 'rxjs/add/operator/map', 'rxjs/add/operator/startWith', 'rxjs/add/operator/scan'

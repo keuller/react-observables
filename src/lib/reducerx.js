@@ -9,10 +9,12 @@ const dispatcher = (...args) => stream$.next(...args)
 export const createStore = (rootReducer, initState) => stream$.flatMap(ensureStream).startWith(initState).scan(rootReducer)
 
 // dispatch action
-export const action = (type, data) => {
-    dispatcher({ type, payload: data })
+export const dispatch = (type, data) => {
     if (isStream(data)) {
-        dispatcher(data)
+        dispatcher({ type, payload: null })
+        setTimeout(() => dispatcher(data), 1)
+    } else {
+        dispatcher({ type, payload: data })
     }
 }
 

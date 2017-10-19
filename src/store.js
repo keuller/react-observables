@@ -1,4 +1,4 @@
-import { createStore, combineReducers } from './reducerx'
+import { createStore, combineReducers } from 'lib/reducerx'
 
 // application initial state
 const initState = { name: 'Harry Potter', count: 0, users: [] }
@@ -21,15 +21,10 @@ const counter = (state, action) => {
 }
 
 const name = (state, action) => {
-    switch(action.type) {
-        case 'NAME_CHANGED': 
-            return {
-                ...state,
-                name: action.payload
-            }
-        default:
-            return state
+    if (action.type == 'NAME_CHANGED') {
+        return { ...state, name: action.payload }
     }
+    return state
 }
 
 const users = (state, action) => {
