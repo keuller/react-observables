@@ -1,16 +1,17 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+  , webpack = require('webpack')
   , ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-var cssLoader = ExtractTextPlugin.extract({
-    use: 'css-loader'
-})
+const cssLoader = ExtractTextPlugin.extract({ use: 'css-loader' })
 
 module.exports = {
   entry:{
     bundle: './src/index.js',
-    runtime: ['preact', 'whatwg-fetch'],
-    vendor: ['most', 'most-subject']
+    runtime: ['preact'],
+    vendor: [
+      'rxjs/Subject', 'rxjs/Observable', 'rxjs/add/observable/from', 'rxjs/add/observable/fromPromise',
+      'rxjs/add/operator/mergeMap', 'rxjs/add/operator/map', 'rxjs/add/operator/startWith', 'rxjs/add/operator/scan'
+    ]
   },
 
   output: {
@@ -57,7 +58,7 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new ExtractTextPlugin("css/app.css"),
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['runtime', 'vendor'],
+      name: ['vendor', 'runtime'],
       warnings: false
     })
   ]

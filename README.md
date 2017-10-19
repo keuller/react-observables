@@ -1,10 +1,8 @@
-# preact-observables
+# preact-rxjs
 
-This simple application shows how to manage the state using Preact through Observables.
-
-There are 3 branches each one with an implementation of Observables (mostjs, rxjs and Kefir)
+This simple application shows how to manage the state using Preact and RxJS, through Observables. 
 
 To run, just type: 
 ```bash
-$ yarn && yarn run dev
+$ yarn && yarn start
 ```

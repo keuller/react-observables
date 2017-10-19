@@ -1,11 +1,11 @@
 import { h } from 'preact'
-import { fromPromise } from 'most'
-import { action } from 'reducerx'
+import { promise } from 'lib/util'
+import { dispatch } from 'lib/reducerx'
 
 let loadUsers = (val) => {
     if (!val) val = '5'
-    action('USERS_LOADING', 
-        fromPromise(fetch(`https://api.github.com/users?per_page=${val}`).then(resp => resp.json()))
+    const url = `https://api.github.com/users?per_page=${val}`
+    dispatch('USERS_LOADING', promise(fetch(url).then(resp => resp.json()))
             .map(val => ({ type: 'USERS_LOADED', payload: val }))
     )
 }
@@ -26,7 +26,7 @@ const UserList = ({data}) => {
             <h2>Github Users</h2>
             <div>
                 <button class="btn" onClick={() => loadUsers()}>Load</button>
-                <button class="btn" onClick={() => action('USERS_LOADING')} disabled={data.length < 1}>Clear</button>
+                <button class="btn" onClick={() => dispatch('USERS_LOADING')} disabled={data.length < 1}>Clear</button>
                 <select class="btn" onChange={(ev) => loadUsers(ev.target.value)}>
                     <option value="5">Max. 05</option>
                     <option value="10">Max. 10</option>
