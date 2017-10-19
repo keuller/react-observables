@@ -1,8 +1,8 @@
-# preact-mostjs
+# preact-rxjs
 
-This simple application shows how to manage the state using Preact and Most, through Observables. 
+This simple application shows how to manage the state using Preact and RxJS, through Observables. 
 
 To run, just type: 
 ```bash
-$ yarn && yarn run dev
+$ yarn && yarn start
 ```
